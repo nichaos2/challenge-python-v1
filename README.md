@@ -45,6 +45,17 @@ From there on everytime you want to run the app, just fire the database up and o
 ## Docker
 
 - browse to the project path
+- _Note_: there is a manipulation need to be done with the creation of the superuser in the docker-compose.yml before running  the docker containers **for the first time**
+  - add the line 
+    ```
+    python dinopedia/manage.py createsuperuser --noinput &&
+    ```
+    before the line
+    ```
+    python dinopedia/manage.py runserver 0.0.0.0:8000"
+    ```
+    and after the first run of the docker remove it.
+  - after the superuser is created you must not run this line again (as long as there us a superuser).
 - run
   ```
   docker-compose up --build -d
